@@ -6,117 +6,85 @@ chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-# Summary Report: “Secure Your Applications: AWS Perimeter Protection Workshop”
+# Report: “Secure Your Applications: AWS Perimeter Protection Workshop”
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Sharing insights on CloudFront, WAF, and AWS Shield.
+- Introduction to designing and optimizing global content delivery with CloudFront.
+- Methods to protect web applications from threats using AWS WAF.
+- Hands-on practice on security and web application optimization.
 
-### Speakers
+### List of Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Nguyen Gia Hung** - Head of Solutions Architect, AWS
+- **Julian Ju** - Senior Edge Services Specialist Solutions Architect, AWS
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Introduction to CloudFront
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+- **Operation**: Operates based on a network of Points of Presence (PoPs) to route traffic to the location closest to the user.
+- **Connectivity & Protocols**: HTTP/3 Multiplexing, TCP Optimization (Persistent Connection, Connection Pooling, TCP Window Scaling), AWS Global Backbone.
+- **Origin cloaking**: Hiding the origin server (S3 "block all" - best practice).
+- **Access Control**: Signed URL/Cookies, Geographic Restriction.
+- **Performance**: Multi-layer cache, request collapsing, TTL (Time-to-Live).
+- **Reliability**: CloudFront Origin Failover (Request Level), DNS Failover (Route 53 Global Scale), Logic at Edge.
+- **Observability**: CloudWatch RUM (Real User Monitoring), Internet Monitor.
 
-#### Transitioning to modern application architecture – Microservices
+#### Security Issues in Applications
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- DDoS attacks on network infrastructure.
+- Application vulnerabilities causing attack risks.
+- Bot traffic (fake clients) depleting resources.
+- Brute-force and flood attacks.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+#### Introduction to WAF and Application Protection
 
-#### Domain-Driven Design (DDD)
+- **AWS Shield**: Protects layers 3-4, automatically detects and blocks DDoS attacks on network infrastructure.
+- **AWS WAF**: Protects layer 7, blocks application vulnerabilities (CVE), SQLi, XSS.
+- **Bot Control**: Prevents bot traffic (fake clients) that causes cost overruns and data skew.
+- **Rate limit**: Limits the number of requests to prevent brute-force or flood attacks.
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+### Lessons Learned
 
-#### Event-Driven Architecture
+#### AWS CloudFront
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+- Understood how CloudFront works and explored enterprise case studies using CloudFront.
+- Learned how to use CloudFront and how to optimize web applications with it.
 
-#### Compute Evolution
+#### Security with WAF
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+- Learned about security risks and vulnerabilities.
+- Understood how WAF operates and how it prevents security attacks.
+- Learned how to use WAF to prevent vulnerabilities and basic attacks.
 
-#### Amazon Q Developer
+### Application to Work
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
-
-### Key Takeaways
-
-#### Design Mindset
-
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
-
-#### Technical Architecture
-
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
-
-#### Modernization Strategy
-
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
-
-### Applying to Work
-
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- **Applying CloudFront in Web Deployment**: Using CloudFront to optimize Web applications  and deploy in a Serverless direction, optimizing costs for simple websites that do not require heavy processing.
+- **Applying WAF in Security**: Using WAF  to secure data flows within the system, allowing trusted data flows to pass while blocking suspicious ones.
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Participating in the **“Secure Your Applications: AWS Perimeter Protection Workshop”** was a very rewarding experience, helping me gain knowledge about CDNs, optimizing Web application deployment on the internet, and cloud security. Some standout experiences included:
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+#### Learning from High-Expertise Speakers
+- AWS speakers shared **best practices** in design optimization and application security.
+- Through real-world case studies, I clearly understood how to apply **CloudFront** and **AWS WAF** in practical scenarios.
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+#### Hands-on Technical Experience
+- The workshop included practicing the deployment of a Web application on CloudFront, which helped me understand how CloudFront operates.
+- Practicing security with WAF through various scenarios helped me understand how WAF secures applications and how to deploy security configurations based on specific needs.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+#### Networking and Exchange
+- Participating in listening and discussing with speakers as well as fellow attendees helped me connect and learn more about AWS services, specifically CloudFront and WAF.
+- Practical implementation of CloudFront and WAF under the guidance of speakers helped me learn the methods and understand the mechanics of these services better.
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+#### Key Takeaways
+- **CloudFront**: A CDN service that assists in optimizing Web application deployment on the Internet.
+- **WAF**: A security service that helps users prevent security vulnerabilities as well as cyber attacks on applications.
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+#### Some Images from the Event
+* Add images of you/the event here
 
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+> Overall, the event not only provided technical knowledge but also helped me learn about services that support efficient, cost-optimized, and more secure Web application deployment.

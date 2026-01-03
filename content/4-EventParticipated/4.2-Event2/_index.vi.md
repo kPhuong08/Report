@@ -74,14 +74,17 @@ Tham gia workshop **“Secure Your Applications: AWS Perimeter Protection Worksh
 - Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **CloudFront** và **AWS WAF** vào các trường hợp thực tế.
 
 #### Trải nghiệm kỹ thuật thực tế
-- 
+- Workshop thực hành triển khai một ứng dụng Web trên CloudFront giúp tôi hiểu về cách CloudFront hoạt động 
+- Thực hành bảo mật bằng WAF với nhiều kịch bản khác nhau giúp tôi hiểu về cách WAF bảo mật và triển khai bảo mật theo nhu cầu của mình trên WAF  
 
 
 #### Kết nối và trao đổi
-- 
+- Việc tham gia nghe và thảo luận với các diễn giả cũng như bạn đồng tham dự, giúp tôi kết nối và học hỏi thêm về những dịch vụ trên AWS cụ thể là CloudFront và WAF
+- Việc thực hành triển khia CloudFront cũng như WAF dưới sự hướng dẫn của diễn giả giúp tôi biết thêm về cách thức cũng như hiểu thêm về cách hoạt động của những dịch vụ này
 
 #### Bài học rút ra
-- 
+- **CloudFront**: một dịch vụ CDN có thể giúp ích trong viêc tối ưu triển khai ứng dụng Web trên Internet 
+- **WAF**: dịch vụ bảo mật giúp người dùng có thể ngăn chặn các lỗ hổng bảo mật cũng như các cuộc tấn công mạng cho ứng dụng
 
 #### Một số hình ảnh khi tham gia sự kiện
 * Thêm các hình ảnh của các bạn tại đây

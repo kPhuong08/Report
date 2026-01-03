@@ -6,121 +6,103 @@ chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
-
-# Summary Report: “Cloud Day”
+# Report: “Cloud Day VietNam 2025: Ho Chi Minh City Connect Edition for Builders”
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Sharing trends in AI.
+- AWS solutions applied within enterprises.
+- Insights on data analytics and artificial intelligence to drive development.
+- Migration, modernization, and application building on AWS.
 
-### Speakers
+*This report focuses on the Migration & Modernization content from the event.*
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+### List of Speakers
+
+- **Nguyen Van Hai** - Director of Software Engineering, Techcombank & **Son Do** - Technical Account Manager, AWS
+- **Phuc Nguyen** - Solutions Architect, AWS & **Alex Tran** - AI Director, OCB
+- **Hung Hoang** - Customer Solutions Manager, AWS
+- **Taiki Dang** - Solutions Architect, AWS
+- **Nguyen Manh Tuyen** - Head of Data Application, LPBank Securities
+- **Nguyen Minh Ngan** - AI Specialist, OCB
+- **Nguyen The Vinh** - Co-Founder & CTO, Ninety Eight
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Large-scale Migration and Modernization to AWS
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+- Addressed enterprise problems and challenges in scaling infrastructure to meet customer needs.
+- Discussed the drivers and processes leading to the decision to move from on-prem to cloud.
+- Outlined the resource migration process -> identifying which resources to move to the cloud first and which to move later.
 
-#### Transitioning to modern application architecture – Microservices
+#### Application Modernization with Generative AI-Powered Tools
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- Explored how Amazon Q Developer transforms the Software Development Life Cycle (SDLC) by acting as an agent across the AWS Console, IDE, CLI, and DevSecOps platforms.
+- Shared how GenAI tools accelerate software development, automate documentation, testing, and virtualization.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+#### Panel Discussion: Business Transformation
 
-#### Domain-Driven Design (DDD)
+- Insights from experts on applying AI in business.
+- Real-world case studies on modernizing applications to accelerate speed and innovation within enterprises.
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+#### VMware Transformation with AI-driven Cloud Modernization
 
-#### Event-Driven Architecture
+- Shared how AWS Transform enables fast, secure, and cost-effective migration from VMware to the cloud.
+- The modernization roadmap to EKS, RDS, and serverless after deployment.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+#### AWS Security at Scale: From Development to Production
 
-#### Compute Evolution
+- Introduction to AWS Security Hub.
+- Shared methods for enhancing cloud security at scale.
+- How to integrate GenAI into security analysis and operations automation.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+### Lessons Learned
 
-#### Amazon Q Developer
+#### Current Technology Transformation Trends
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+- **GenAI**: The robust development of AI and the trend of applying it within enterprises.
+- **Migrate & Modernization**: The trend of moving and modernizing technology within businesses.
+- **Security**: Alongside development and transformation, security is essential to protect data, applications, and technology.
 
-### Key Takeaways
+#### Approach to Transformation and Modernization
 
-#### Design Mindset
+- **Drivers**: Based on current and future business problems, workforce, skill levels, and support.
+- **Planning & Factors**: Establishing a direction suitable for the current enterprise situation with a detailed plan.
+- **Modernization Strategy**: Having a specific plan regarding what parts to migrate, how to migrate, and when to migrate.
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+#### GenAI Tools and Applications
 
-#### Technical Architecture
+- Learned more about GenAI tools (Amazon Q) and how to apply them to accelerate the application development process.
+- Understood Q Developer's capability to understand complex codebases, suggest optimizations, and automate routine tasks throughout the development lifecycle.
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+#### Cloud Security
 
-#### Modernization Strategy
+- Learned about security rules in the cloud, how to integrate security principles from the design stage into the entire development process, and how to use advanced detection and response capabilities.
+- Explored how GenAI enhances security analysis and automates operations.
+- Learned about AWS Security Hub for security management.
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+### Application to Work
 
-### Applying to Work
-
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- **GenAI Tools**: Application in supporting development and security.
+- **Security**: Applying security rules to applications.
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Participating in **“Cloud Day VietNam 2025”** was a very rewarding experience, helping me learn more about GenAI, security, the Application Migrate & Modernization process, and understand more about real-world case studies from enterprises. Some standout experiences included:
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+#### Learning from High-Expertise Speakers
+- Speakers from AWS and major tech organizations shared the most practical realities of how enterprises are operating.
+- Through real case studies, I gained a clearer understanding of **GenAI** and **Migrate & Modernization** in practical applications.
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+#### Networking and Exchange
+- The event created opportunities to exchange directly with experts and peers with shared passions, helping me gain knowledge and better understand current technology trends.
+- Through practical examples, I learned that **GenAI** and **Migrate & Modernization** are the technological directions that companies are aiming for.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+#### Key Takeaways
+- **GenAI** is developing exceptionally fast and is being applied by more and more enterprises into their systems.
+- Migration and modernization strategies need to be evaluated and planned in detail; one should not rush to transform the entire system.
+- AI tools like Amazon Q Developer can support the acceleration of software development.
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
-
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+#### Some Images from the Event
+* Add images of you/the event here
+> Overall, the event not only provided technical knowledge but also helped me learn more about AI trends and transformation & modernization in the enterprise.
