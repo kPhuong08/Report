@@ -6,120 +6,104 @@ chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+# Bài thu hoạch “Cloud Day VietNam 2025: Ho Chi Minh City Connect Edition for Builders”
 
 ### Mục Đích Của Sự Kiện
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+- Chia sẻ các xu hướng về AI 
+- Các giải pháp ứng dụng AWS vào trong doanh nghiệp 
+- Chia sẻ vè phân tích dữ liệu và trí tuệ nhân tạo trong thúc đẩy phát triển 
+- Di chuyển, hiện đại hóa và xây dựng ứng dụng trên AWS 
+
+*Bài thu hoạch này tập trung về nội dung Migrate & Mordenization trong sự kiện*
 
 ### Danh Sách Diễn Giả
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+- **Nguyễn Văn Hải** - Director of Software Engineering, Techcombank & **Sơn Đỗ** - Technical Account Manager, AWS 
+- **Phúc Nguyễn** - Solutions Architect, AWS & **Alex Trần** - Giám đốc AI, OCB
+- **Hùng Hoàng** - Customer Solutions Manager, AWS
+- **Taiki Đặng** - Solutions Architect, AWS
+- **Nguyễn Mạnh Tuyên** - THead of Data Application, LPBank Securities 
+- **Nguyễn Minh Ngân** - AI Specialist, OCB
+- **Nguyễn Thế Vinh** - Co-Founder & CTO, Ninety Eight
 
 ### Nội Dung Nổi Bật
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### Quá trình di chuyển và hiện đại hóa quy mô lớn lên AWS
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+- Đưa ra bài toán, vấn đề của doanh nghiệp trong việc mở rộng hạ tầng để đáp ứng nhu cầu khách hàng
+- Các động lực và quá trình dẫn đến quyết định di chuyển từ on-prem lên cloud
+- Quá trình di chuyển các tài nguyên -> những tài nguyên đưa lên cloud trước và sau
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+#### Hiện đại hóa ứng dụng với công cụ Generative AI-Powered
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+- Khám phá cách Amazon Q Developer chuyển đổi vòng đời phát triển phần mềm (SDLC) thông qua khả năng hoạt động như một tác nhân trên các nền tảng AWS Console, IDE, CLI và DevSecOps
+- Chia sẻ cách công cụ GenAI giúp tăng tốc phát triển phần mềm, tự động viết tài liệu, test và ảo 
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+#### Thảo luận với nhóm diễn giả: Chuyển đổi kinh doanh
 
-#### Domain-Driven Design (DDD)
+- Các chia sẻ từ chuyên gia về ứng dụng AI trong doanh nghiệp
+- Các case-study thực tế về hiện đại hóa ứng dụng để tăng tốc và đổi mới trong doanh nghiệp
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+#### Chuyển đổi VMware với AI-driven cloud modernisation
 
-#### Event-Driven Architecture
+- Chi sẻ cách AWS Transform giúp di chuyển nhanh chóng, an toàn và tiết kiệm chi phí từ VMware lên cloud
+- Lộ trình hiện đại hóa lên EKS, RDS và serverless sau khi triển khai
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+#### AWS security at scale: Từ development đến production
 
-#### Compute Evolution
-
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
-
-#### Amazon Q Developer
-
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+- Giới thiệu AWS Sercurity Hub
+- Chia sẻ cách nâng cao bảo mật cloud ở quy mô lớn
+- Cách tích hợp GenAI vào phân tích và tự động hóa vận hành bảo 
 
 ### Những Gì Học Được
 
-#### Tư Duy Thiết Kế
+#### Xu hướng chuyển đổi của công nghệ hiện nay
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+- **GenAI**: sự phát triển mạnh mẽ của AI và xu hướng ứng dụng nó vào trong doanh nghiệp
+- **Migrate & Modernization**: xu hướng di chuyển và hiện đại hóa công nghệ trong doanh nghiệp
+- **Sercurity**: cùng với sự phát triển và chuyển đổi thì bảo mật là cần thiết để bảo vệ dữ liệu, ứng dụng và công nghệ
 
-#### Kiến Trúc Kỹ Thuật
+#### Tiếp cận chuyển đổi và hiện đại hóa
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+- **Động lực**: dựa vào bài toán doanh nghiệp hiện tại và tương lai, nhân lực, trình độ và sự ủng hộ 
+- **Kế hoạch và nhân tố**: đưa ra hướng đi phù hợp với tình hình doanh nghiệp hiện tại và có một kế hoạch chi tiết  
+- **Chiến lược hiện đại hóa**: có một kế hoạch cụ thể về những phần dịch chuyển, cách dịch chuyển và lúc dịch chuyển
 
-#### Chiến Lược Hiện Đại Hóa
+#### Các công cụ GenAI và ứng dụng
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+- Biết thêm được các công cụ GenAI (Amazon Q) và cách ứng dụng nó vào ứng dụng để tăng tốc quá trình phát triển ứng dụng, phần 
+- Hiểu thêm khả năng của Q Developer trong việc hiểu các cơ sở mã phức tạp, đề xuất các tối ưu hóa và tự động hóa các tác vụ thường xuyên trong suốt vòng đời phát triển.
+
+#### Bảo mật trong cloud
+
+- Biết thêm về các quy tắc bảo mật trong cloud, cách tích hợp các nguyên tắc bảo mật ngay từ khâu thiết kế vào toàn bộ quy trình phát triển và sử dụng các khả năng phát hiện và phản hồi nâng cao
+- Khám phá cách GenAI tăng cường phân tích bảo mật và tự động hóa các hoạt động
+- Tìm hiểu về AWS Sercurity Hub trong việc bảo mật
+
 
 ### Ứng Dụng Vào Công Việc
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+- **Công cụ GenAI**: ứng dụng trong việc hỗ trợ phát triển, bảo mật 
+- **Bảo mật**: ứng dụng các quy tắc bảo mật vào ứng dụng
 
 ### Trải nghiệm trong event
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+Tham gia event **“Cloud Day VietNam 2025”** là một trải nghiệm rất bổ ích, giúp tôi học hỏi thêm về GenAI, bảo mật, quá trình Migrate & Modernization của ứng dụng và hiểu thêm về các case-study thực tế từ các doanh nghiệp. Một số trải nghiệm nổi bật:
 
 #### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
-
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
-
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ về những gì thực tế nhất mà các doanh nghiệp đang vận hành
+- Qua các case study thực tế, tôi hiểu rõ hơn về **GenAI** và **Migrate & Modernization** trong các úng dụng thực tế.
 
 #### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
+- Event tạo cơ hội trao đổi trực tiếp với các chuyên gia, các bạn có chung đam mê giúp tôi có thêm những kiến thức cũng như hiểu rõ hơn về xu hướng công nghệ hiện tại.
+- Qua các ví dụ thực tế, tôi biết thêm được về **GenAI**, **Migrate & Modernization** là những hướng đi công nghệ mà cách doanh nghiệp đang hướng tới
 
 #### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+- **GenAI** đang phát triển rất vượt trội và đang càng được nhiều doanh nghiệp ứng dụng vào hệ thống của họ
+- Chiến lược di chuyển và hiện đại hóa cần đánh giá và lên kế hoạch một cách chi tiết, không nên vội vàng chuyển đổi toàn bộ hệ thống.
+- Các công cụ AI như Amazon Q Developer có thể hỗ trợ trong việc tăng tốc phát triển phần mềm 
 
 #### Một số hình ảnh khi tham gia sự kiện
 * Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi biết thêm về xu hướn AI và chuyển đổi & hiện đại hóa trong doanh nghiệp
