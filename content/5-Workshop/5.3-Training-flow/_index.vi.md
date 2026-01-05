@@ -10,7 +10,7 @@ pre : " <b> 5.3. </b> "
 
 Trong phần này, chúng ta sẽ thiết lập cơ chế Event-Driven (hướng sự kiện). Mục tiêu là khi dữ liệu training mới được tải lên S3 Bucket, một Lambda Function sẽ tự động được kích hoạt. Lambda này đóng vai trò là "Orchestrator" để gọi API của SageMaker, bắt đầu một Training Job mới mà không cần sự can thiệp của con người.
 
-![overview](/images/5-Workshop/5.3-Training-flow/diagram2.png)
+![overview](/images/5-Workshop/5.3-Training-flow/diagram.png)
 
 #### Nội dung
 

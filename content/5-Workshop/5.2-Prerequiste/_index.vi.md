@@ -5,238 +5,145 @@ weight : 2
 chapter : false
 pre : " <b> 5.2. </b> "
 ---
+### Tạo S3 Bucket
+Trước hết, chúng ta cần một nơi để lưu trữ dữ liệu huấn luyện và model artifacts.
 
-#### IAM permissions
-Gắn IAM permission policy sau vào tài khoản aws user của bạn để triển khai và dọn dẹp tài nguyên trong workshop này.
+![create bucket](/images/5-Workshop/5.2-Prerequisite/create-bucket.png)
+
+![set name bucket](/images/5-Workshop/5.2-Prerequisite/name-bucket.png)
+
+![enable versioning](/images/5-Workshop/5.2-Prerequisite/enable-versioning.png)
+
+Các thông tin còn lại để default
+
+Tạo thêm các folder rỗng để có thể upload file để trigger, chứa dữ liệu, lưu model và lưu script 
+* `data/train/`: Nơi bạn sẽ upload file để trigger training.
+* `data/test/`: Nơi chứa dữ liệu kiểm thử.
+* `models/`: Nơi SageMaker lưu model sau khi train.
+* `code/`: Nơi lưu script training (`train.py`)
+
+![create folder](/images/5-Workshop/5.2-Prerequisite/create-folder.png)
+
+![folders](/images/5-Workshop/5.2-Prerequisite/folders.png)
+
+#### IAM permissions & role
+Vì chúng ta sử dụng kiến trúc Serverless tự động, các dịch vụ cần quyền để "nói chuyện" với nhau. Vào IAM Console, tạo một Role tên là SageMakerExecutionRole với các policy:
+
+* AmazonSageMakerFullAccess
+* AmazonS3FullAccess
+* CloudWatchLogsFullAccess 
+* AWSLambda_FullAccess
+*Lưu lại ARN của Role này để dùng ở các bước sau.*
+
+Vào console của IAM, trong phần Role:
+
+![create role](/images/5-Workshop/5.2-Prerequisite/create-role.png)
+
+Nhấn **Create** để tạo role mới
+
+![info role](/images/5-Workshop/5.2-Prerequisite/info-role.png)
+
+Ở đây chúng ta sẽ tạo role cho service **Sagemaker** và nhấn **Next**
+
+![role permission](/images/5-Workshop/5.2-Prerequisite/role-permission.png)
+
+Thì permission default cho role khi tạo sẽ là **"AmazonSageMakerFullAccess"** và nhấn **Next**
+
+![name role](/images/5-Workshop/5.2-Prerequisite/name-role.png)
+
+Nhập tên và mô tả cho role còn lại để dault và chọn **Create role** ở cuối trang
+
+![role created](/images/5-Workshop/5.2-Prerequisite/role-created.png)
+
+Role đã được tạo. Sau đó tiến hành thêm policy cho role:
+
+![add permission](/images/5-Workshop/5.2-Prerequisite/add-permission.png)
+
+Nhấn vào role vừa tạo ở mục permission nhấn **Add permission** và chọn **Attach policies**
+
+![choose permission](/images/5-Workshop/5.2-Prerequisite/choose-permission.png)
+
+Search các role cần thiết và tick vào ô như hình trên (*các policy khác tương tự*)
+
+![choose add](/images/5-Workshop/5.2-Prerequisite/choose-add.png)
+
+Sau khi thêm những policy cần thiết thì nhấn **Add permission**
+
+![permission added](/images/5-Workshop/5.2-Prerequisite/permission-added.png)
+
+Permission mới đã được thêm vào 
+
+#### Training Script & Data
+
+Chúng ta cần chuẩn bị sẵn mã nguồn training và dữ liệu mẫu ở máy local để sẵn sàng cho việc upload.
+
+Tùy vào model sẽ có những dataset khác nhau ở đây chúng ta tạo một lệnh train đơn giản để giả lập
+
+Tạo file train.py ở máy local với nội dung giả lập quá trình training:
 ```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "cloudformation:*",
-                "cloudwatch:*",
-                "ec2:AcceptTransitGatewayPeeringAttachment",
-                "ec2:AcceptTransitGatewayVpcAttachment",
-                "ec2:AllocateAddress",
-                "ec2:AssociateAddress",
-                "ec2:AssociateIamInstanceProfile",
-                "ec2:AssociateRouteTable",
-                "ec2:AssociateSubnetCidrBlock",
-                "ec2:AssociateTransitGatewayRouteTable",
-                "ec2:AssociateVpcCidrBlock",
-                "ec2:AttachInternetGateway",
-                "ec2:AttachNetworkInterface",
-                "ec2:AttachVolume",
-                "ec2:AttachVpnGateway",
-                "ec2:AuthorizeSecurityGroupEgress",
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:CreateClientVpnEndpoint",
-                "ec2:CreateClientVpnRoute",
-                "ec2:CreateCustomerGateway",
-                "ec2:CreateDhcpOptions",
-                "ec2:CreateFlowLogs",
-                "ec2:CreateInternetGateway",
-                "ec2:CreateLaunchTemplate",
-                "ec2:CreateNetworkAcl",
-                "ec2:CreateNetworkInterface",
-                "ec2:CreateNetworkInterfacePermission",
-                "ec2:CreateRoute",
-                "ec2:CreateRouteTable",
-                "ec2:CreateSecurityGroup",
-                "ec2:CreateSubnet",
-                "ec2:CreateSubnetCidrReservation",
-                "ec2:CreateTags",
-                "ec2:CreateTransitGateway",
-                "ec2:CreateTransitGatewayPeeringAttachment",
-                "ec2:CreateTransitGatewayPrefixListReference",
-                "ec2:CreateTransitGatewayRoute",
-                "ec2:CreateTransitGatewayRouteTable",
-                "ec2:CreateTransitGatewayVpcAttachment",
-                "ec2:CreateVpc",
-                "ec2:CreateVpcEndpoint",
-                "ec2:CreateVpcEndpointConnectionNotification",
-                "ec2:CreateVpcEndpointServiceConfiguration",
-                "ec2:CreateVpnConnection",
-                "ec2:CreateVpnConnectionRoute",
-                "ec2:CreateVpnGateway",
-                "ec2:DeleteCustomerGateway",
-                "ec2:DeleteFlowLogs",
-                "ec2:DeleteInternetGateway",
-                "ec2:DeleteNetworkInterface",
-                "ec2:DeleteNetworkInterfacePermission",
-                "ec2:DeleteRoute",
-                "ec2:DeleteRouteTable",
-                "ec2:DeleteSecurityGroup",
-                "ec2:DeleteSubnet",
-                "ec2:DeleteSubnetCidrReservation",
-                "ec2:DeleteTags",
-                "ec2:DeleteTransitGateway",
-                "ec2:DeleteTransitGatewayPeeringAttachment",
-                "ec2:DeleteTransitGatewayPrefixListReference",
-                "ec2:DeleteTransitGatewayRoute",
-                "ec2:DeleteTransitGatewayRouteTable",
-                "ec2:DeleteTransitGatewayVpcAttachment",
-                "ec2:DeleteVpc",
-                "ec2:DeleteVpcEndpoints",
-                "ec2:DeleteVpcEndpointServiceConfigurations",
-                "ec2:DeleteVpnConnection",
-                "ec2:DeleteVpnConnectionRoute",
-                "ec2:Describe*",
-                "ec2:DetachInternetGateway",
-                "ec2:DisassociateAddress",
-                "ec2:DisassociateRouteTable",
-                "ec2:GetLaunchTemplateData",
-                "ec2:GetTransitGatewayAttachmentPropagations",
-                "ec2:ModifyInstanceAttribute",
-                "ec2:ModifySecurityGroupRules",
-                "ec2:ModifyTransitGatewayVpcAttachment",
-                "ec2:ModifyVpcAttribute",
-                "ec2:ModifyVpcEndpoint",
-                "ec2:ReleaseAddress",
-                "ec2:ReplaceRoute",
-                "ec2:RevokeSecurityGroupEgress",
-                "ec2:RevokeSecurityGroupIngress",
-                "ec2:RunInstances",
-                "ec2:StartInstances",
-                "ec2:StopInstances",
-                "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
-                "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
-                "iam:AddRoleToInstanceProfile",
-                "iam:AttachRolePolicy",
-                "iam:CreateInstanceProfile",
-                "iam:CreatePolicy",
-                "iam:CreateRole",
-                "iam:DeleteInstanceProfile",
-                "iam:DeletePolicy",
-                "iam:DeleteRole",
-                "iam:DeleteRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:GetInstanceProfile",
-                "iam:GetPolicy",
-                "iam:GetRole",
-                "iam:GetRolePolicy",
-                "iam:ListPolicyVersions",
-                "iam:ListRoles",
-                "iam:PassRole",
-                "iam:PutRolePolicy",
-                "iam:RemoveRoleFromInstanceProfile",
-                "lambda:CreateFunction",
-                "lambda:DeleteFunction",
-                "lambda:DeleteLayerVersion",
-                "lambda:GetFunction",
-                "lambda:GetLayerVersion",
-                "lambda:InvokeFunction",
-                "lambda:PublishLayerVersion",
-                "logs:CreateLogGroup",
-                "logs:DeleteLogGroup",
-                "logs:DescribeLogGroups",
-                "logs:PutRetentionPolicy",
-                "route53:ChangeTagsForResource",
-                "route53:CreateHealthCheck",
-                "route53:CreateHostedZone",
-                "route53:CreateTrafficPolicy",
-                "route53:DeleteHostedZone",
-                "route53:DisassociateVPCFromHostedZone",
-                "route53:GetHostedZone",
-                "route53:ListHostedZones",
-                "route53domains:ListDomains",
-                "route53domains:ListOperations",
-                "route53domains:ListTagsForDomain",
-                "route53resolver:AssociateResolverEndpointIpAddress",
-                "route53resolver:AssociateResolverRule",
-                "route53resolver:CreateResolverEndpoint",
-                "route53resolver:CreateResolverRule",
-                "route53resolver:DeleteResolverEndpoint",
-                "route53resolver:DeleteResolverRule",
-                "route53resolver:DisassociateResolverEndpointIpAddress",
-                "route53resolver:DisassociateResolverRule",
-                "route53resolver:GetResolverEndpoint",
-                "route53resolver:GetResolverRule",
-                "route53resolver:ListResolverEndpointIpAddresses",
-                "route53resolver:ListResolverEndpoints",
-                "route53resolver:ListResolverRuleAssociations",
-                "route53resolver:ListResolverRules",
-                "route53resolver:ListTagsForResource",
-                "route53resolver:UpdateResolverEndpoint",
-                "route53resolver:UpdateResolverRule",
-                "s3:AbortMultipartUpload",
-                "s3:CreateBucket",
-                "s3:DeleteBucket",
-                "s3:DeleteObject",
-                "s3:GetAccountPublicAccessBlock",
-                "s3:GetBucketAcl",
-                "s3:GetBucketOwnershipControls",
-                "s3:GetBucketPolicy",
-                "s3:GetBucketPolicyStatus",
-                "s3:GetBucketPublicAccessBlock",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketVersioning",
-                "s3:ListAccessPoints",
-                "s3:ListAccessPointsForObjectLambda",
-                "s3:ListAllMyBuckets",
-                "s3:ListBucket",
-                "s3:ListBucketMultipartUploads",
-                "s3:ListBucketVersions",
-                "s3:ListJobs",
-                "s3:ListMultipartUploadParts",
-                "s3:ListMultiRegionAccessPoints",
-                "s3:ListStorageLensConfigurations",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:PutBucketAcl",
-                "s3:PutBucketPolicy",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:PutObject",
-                "secretsmanager:CreateSecret",
-                "secretsmanager:DeleteSecret",
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:ListSecrets",
-                "secretsmanager:ListSecretVersionIds",
-                "secretsmanager:PutResourcePolicy",
-                "secretsmanager:TagResource",
-                "secretsmanager:UpdateSecret",
-                "sns:ListTopics",
-                "ssm:DescribeInstanceProperties",
-                "ssm:DescribeSessions",
-                "ssm:GetConnectionStatus",
-                "ssm:GetParameters",
-                "ssm:ListAssociations",
-                "ssm:ResumeSession",
-                "ssm:StartSession",
-                "ssm:TerminateSession"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
+import argparse
+import os
+import time
+import joblib  # <--- Nhớ import thư viện này
 
+# ---------------------------------------------------------
+# PHẦN 1: CÁC HÀM BẮT BUỘC CHO SAGE MAKER ENDPOINT (INFERENCE)
+# ---------------------------------------------------------
+
+def model_fn(model_dir):
+    """
+    Hàm này được SageMaker gọi TỰ ĐỘNG khi khởi động Endpoint.
+    Nhiệm vụ: Load model từ ổ cứng lên RAM.
+    """
+    print(f"Đang load model từ: {model_dir}")
+    model_path = os.path.join(model_dir, 'model.joblib')
+    
+    if os.path.exists(model_path):
+        # Load model ra. Ở dưới mình lưu là Dictionary nên load ra cũng là Dictionary
+        return joblib.load(model_path)
+    else:
+        raise FileNotFoundError(f"Không tìm thấy file model tại: {model_path}")
+
+def predict_fn(input_data, model):
+    """
+    (Tuỳ chọn nhưng nên có) Hàm này nhận data từ user và đưa vào model
+    """
+    # Vì model của bạn là dummy (chỉ là cái Dict), mình trả về nguyên văn
+    return {"status": "success", "prediction": model, "input_received": input_data}
+
+# ---------------------------------------------------------
+# PHẦN 2: CODE TRAINING 
+# ---------------------------------------------------------
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    
+    # SageMaker tự động mount data vào các đường dẫn này
+    parser.add_argument('--train', type=str, default=os.environ.get('SM_CHANNEL_TRAIN'))
+    parser.add_argument('--model-dir', type=str, default=os.environ.get('SM_MODEL_DIR'))
+    
+    args, _ = parser.parse_known_args()
+    
+    print("Starting training...")
+    time.sleep(5) # Giả lập training
+    
+    # Thay vì write text, hãy dùng joblib.dump để lưu object thật
+    # Để tí nữa hàm model_fn ở trên có thể load lại được bằng joblib.load
+    dummy_model = {"name": "Dummy Model", "accuracy": 99.9}
+    
+    save_path = os.path.join(args.model_dir, 'model.joblib')
+    joblib.dump(dummy_model, save_path)
+    # ------------------------
+        
+    print(f"Training complete. Model saved to {save_path}")
 ```
 
-#### Khởi tạo tài nguyên bằng CloudFormation
+Nén file này lại thành .tar.gz
+```
+tar -czvf source.tar.gz train.py
+```
+![source](/images/5-Workshop/5.2-Prerequisite/source.png)
 
-Trong lab này, chúng ta sẽ dùng N.Virginia region (us-east-1).
+Upload file source.tar.gz lên S3 folder code/
 
-Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Để nguyên các lựa chọn mặc định.
-
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
-
-+ Lựa chọn 2 mục acknowledgement 
-+ Chọn Create stack
-
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
-
-Quá trình triển khai CloudFormation cần khoảng 15 phút để hoàn thành.
-
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
-
-+ 2 VPCs đã được tạo
-
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
-
-+ 3 EC2s đã được tạo
-
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+![source uploaded](/images/5-Workshop/5.2-Prerequisite/source-uploaded.png)

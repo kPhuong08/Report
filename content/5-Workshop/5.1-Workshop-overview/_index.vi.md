@@ -6,14 +6,15 @@ chapter : false
 pre : " <b> 5.1. </b> "
 ---
 
-#### Giới thiệu về VPC Endpoint
+#### Tự động hóa quy trình MLOps trên AWS sử dụng SageMaker theo hướng Serverless
 
-+ Điểm cuối VPC (endpoint) là thiết bị ảo. Chúng là các thành phần VPC có thể mở rộng theo chiều ngang, dự phòng và có tính sẵn sàng cao. Chúng cho phép giao tiếp giữa tài nguyên điện toán của bạn và dịch vụ AWS mà không gây ra rủi ro về tính sẵn sàng.
-+ Tài nguyên điện toán đang chạy trong VPC có thể truy cập Amazon S3 bằng cách sử dụng điểm cuối Gateway. Interface Endpoint  PrivateLink có thể được sử dụng bởi tài nguyên chạy trong VPC hoặc tại TTDL.
++ **MLOps** 
+Là sự kết hợp giữa Machine Learning, DevOps và Data Engineering. Là một quy trình tự động hóa khép kín: từ lúc lấy dữ liệu (Data Ingestion), huấn luyện (Training), đánh giá (Evaluation) cho đến triển khai (Deployment) và giám sát (Monitoring). Mục tiêu là giảm thiểu thao tác thủ công và tăng tốc độ đưa model ra thị trường.
++ **SageMaker AI**
+Là nền tảng toàn diện của AWS giúp xây dựng, huấn luyện và triển khai các mô hình ML. Trong bài lab này, chúng ta sẽ tận dụng các tính năng hiện đại nhất của SageMaker:
+  + **SageMaker Training:** Sử dụng Spot Instances để tiết kiệm chi phí huấn luyện.
+  + **SageMaker Serverless Inference:** Triển khai model API mà không cần quản lý server, tự động scale về 0 khi không sử dụng (Cost Optimization).
+  + **SageMaker Pipelines (hoặc Step Functions):** Để điều phối luồng công việc.
 
-#### Tổng quan về workshop
-Trong workshop này, bạn sẽ sử dụng hai VPC.
-+ **"VPC Cloud"** dành cho các tài nguyên cloud như Gateway endpoint và EC2 instance để kiểm tra.
-+ **"VPC On-Prem"** mô phỏng môi trường truyền thống như nhà máy hoặc trung tâm dữ liệu của công ty. Một EC2 Instance chạy phần mềm StrongSwan VPN đã được triển khai trong "VPC On-prem" và được cấu hình tự động để thiết lập đường hầm VPN Site-to-Site với AWS Transit Gateway. VPN này mô phỏng kết nối từ một vị trí tại TTDL (on-prem) với AWS cloud. Để giảm thiểu chi phí, chỉ một phiên bản VPN được cung cấp để hỗ trợ workshop này. Khi lập kế hoạch kết nối VPN cho production workloads của bạn, AWS khuyên bạn nên sử dụng nhiều thiết bị VPN để có tính sẵn sàng cao.
 
 ![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
