@@ -1,59 +1,41 @@
 ---
 title: "Worklog Tuần 2"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 1
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 2:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Tìm hiểu các dịch vụ của AWS
+* Hiểu được cách hoạt động cũng như luồng dữ liệu của các dịch vụ
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   |     - Tìm hiểu kiến trúc, các thành phần AWS: <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database                                                                                         | 8/09/2025   | 8/09/2025      |
+| 3   | - Tìm hiểu dịch vụ EC2: <br> + Cách tạo instance <br> + Cách SSH <br> + Các instance type <br> + Thực hành: <br> <ul> <li> Tạo EC2 <li> SSH vào EC2 <li> Tạo EC2 với user data  </ol>                                             | 9/09/2025   | 9/09/2025      | <https://000004.awsstudygroup.com/ |
+| 4   | - Tìm hiểu VPC: <br> + Region, AZ <br> + Subnet, route table, sercurity group <br> + Internet gateway, nat gateway  <br> + Thực hành: <ul> <li> Tạo subnet, route table <li> Tạo sercurity group <li> Tạo internet gateway, nat gateway <li> Tạo VPC hoàn chỉnh với đủ private, public subnet, connect internet-public-private </ul> | 10/09/2025   | 10/09/2025      | <https://000003.awsstudygroup.com/> |
+| 5   | - Tìm hiểu các loại database: <br>&emsp; + S3 <br>&emsp; + RDS <br>&emsp; + DynamoDB <br>&emsp; <br> - Tìm hiểu Elastic IP                  | 11/09/2025   | 11/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 6   | - **Thực hành:** <br>&emsp; + Tạo VPC và EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; +  Chạy web static đơn giản và test truy cập                                                                                      | 12/09/2025   | 12/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 2:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
+* Hiểu cách thành phần trong AWS: 
   * Compute
   * Storage
   * Networking 
   * Database
-  * ...
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Làm quen với việc tạo VPC, EC2
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Làm quen với network trong AWS (sercurity group, route table, nat, internet gateway)
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+* Tìm hiểu được các database, lưu trữ trong AWS:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* Tạo và host được một web static cơ bản bằng EC2 và có thể truy cập từ bên ngoài được
 
 

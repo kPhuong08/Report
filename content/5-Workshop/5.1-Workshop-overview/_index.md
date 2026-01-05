@@ -21,4 +21,4 @@ A comprehensive AWS platform designed to build, train, and deploy ML models. In 
 
 + **SageMaker Pipelines (or Step Functions):** Used to orchestrate and coordinate the entire workflow.
 
-![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+![overview](/images/5-Workshop/5.1-Workshop-overview/arch.png)

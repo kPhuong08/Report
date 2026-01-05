@@ -1,32 +1,65 @@
 ---
-title : "Clean up"
+title : "Clean up resources"
 date: 2026-01-05
 weight : 6
 chapter : false
 pre : " <b> 5.6. </b> "
 ---
-Congratulations on completing this workshop! 
-In this workshop, you learned architecture patterns for accessing Amazon S3 without using the Public Internet. 
-+ By creating a gateway endpoint, you enabled direct communication between EC2 resources and Amazon S3, without traversing an Internet Gateway. 
-+ By creating an interface endpoint you extended S3 connectivity to resources running in your on-premises data center via AWS Site-to-Site VPN or Direct Connect. 
 
-#### clean up
-1. Navigate to Hosted Zones on the left side of Route 53 console. Click the name of *s3.us-east-1.amazonaws.com* zone. Click Delete and confirm deletion by typing delete. 
+#### Clean up resources
+This is the most important step to ensure you do not incur ongoing AWS charges after the workshop. We remove resources in the reverse order from creation: Endpoint -> Model -> Data.
 
-![hosted zone](/images/5-Workshop/5.6-Cleanup/delete-zone.png)
+#### Delete SageMaker resources
+*Replace the endpoint name with your own*
 
-2. Disassociate the Route 53 Resolver Rule - myS3Rule from "VPC Onprem" and Delete it. 
+1. Delete the Endpoint
+```
+aws sagemaker delete-endpoint --endpoint-name demo-serverless-endpoint
+# Or the endpoint name created by CLI
+aws sagemaker delete-endpoint --endpoint-name demo-serverless-endpoint
+```
 
-![hosted zone](/images/5-Workshop/5.6-Cleanup/vpc.png)
+2. Delete the Endpoint Configuration
 
-4. Open the CloudFormation console  and delete the two CloudFormation Stacks that you created for this lab:
-+ PLOnpremSetup
-+ PLCloudSetup
+```
+aws sagemaker delete-endpoint-config --endpoint-config-name demo-serverless-config
+# Also delete any console-created configs if present
+aws sagemaker delete-endpoint-config --endpoint-config-name demo-serverless-config
+```
 
-![delete stack](/images/5-Workshop/5.6-Cleanup/delete-stack.png)
+3. Delete the Model
 
-5. Delete S3 buckets
-+ Open S3 console
-+ Choose the bucket we created for the lab, click and confirm empty. Click delete and confirm delete.
+```
+# List models to copy the exact name
+aws sagemaker list-models
 
-![delete s3](/images/5-Workshop/5.6-Cleanup/delete-s3.png)
+# Delete the model
+aws sagemaker delete-model --model-name demo-serverless-model
+```
+
+### Delete Data and Lambda
+
+1. Clean the S3 bucket
+```
+# Replace with your bucket name
+export BUCKET_NAME="your-bucket-name"
+
+# Remove all objects (code, data, model artifacts)
+aws s3 rm s3://$BUCKET_NAME --recursive
+
+# Remove the bucket
+aws s3 rb s3://$BUCKET_NAME
+```
+
+2. Delete Lambda functions
++ Go to the Lambda console
++ Select the function to delete
++ Choose **Action** -> **Delete**
+
+![delete](/images/5-Workshop/5.5-Cleanup/delete-function.png)
+
+3. Delete CloudWatch Log Groups
++ Go to CloudWatch -> **Logs** -> **Log Management**
++ Select log groups to delete -> **Action** -> **Delete log group(s)**
+
+![delete](/images/5-Workshop/5.5-Cleanup/delete-log.png)

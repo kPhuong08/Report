@@ -33,6 +33,8 @@ Create the following folders (you can create empty objects to ensure the folders
 
 ![create folder](/images/5-Workshop/5.2-Prerequisite/create-folder.png)
 
+![folders](/images/5-Workshop/5.2-Prerequisite/folders.png)
+
 ---
 
 ### Training script & sample data

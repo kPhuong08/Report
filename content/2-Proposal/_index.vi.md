@@ -1,6 +1,6 @@
 ---
 title: "Bản đề xuất"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
@@ -34,9 +34,8 @@ Giải pháp mang lại hiệu quả kinh tế rõ rệt và giải phóng sức
 ### 3. Kiến trúc giải pháp  
 Nền tảng áp dụng kiến trúc Event-driven Serverless để quản lý vòng đời của mô hình Machine Learning. Dữ liệu huấn luyện (CSV/JSON) được upload lên S3 sẽ kích hoạt chuỗi sự kiện tự động, từ training, đánh giá đến deploy.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+![Architecture](/images/2-Proposal/architecture.png)
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
 
 *Dịch vụ AWS sử dụng*  
 - Amazon S3: Lưu trữ Datasets, Model Artifacts (model.tar.gz) và Training Metrics.

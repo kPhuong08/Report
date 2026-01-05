@@ -1,59 +1,160 @@
 ---
-title : "Test the Interface Endpoint"
+title: "Automated deployment and testing"
 date: 2026-01-05
-weight : 3
-chapter : false
-pre : " <b> 5.4.3 </b> "
+weight: 3
+chapter: false
+pre: " <b> 5.4.3 </b> "
 ---
 
-#### Get the regional DNS name of S3 interface endpoint
-1. From the Amazon VPC menu, choose Endpoints.
+The previous section covered how to deploy a model and an endpoint on SageMaker manually. This section shows how to automatically deploy a new model as soon as it is uploaded to S3.
 
-2. Click the name of newly created endpoint: s3-interface-endpoint. Click details and save the regional DNS name of the endpoint (the first one) to your text-editor for later use. 
+### Automatic flow to create an endpoint and deploy a model
 
-![dns name](/images/5-Workshop/5.4-S3-onprem/dns.png)
+1. Create a Lambda function
 
++ Click **Create function**
 
-#### Connect to EC2 instance in "VPC On-prem"
+![lambda](/images/5-Workshop/5.4-Endpoint/create-lambda.png)
 
-1. Navigate to **Session manager** by typing "session manager" in the search box 
++ Name: `Trigger-Deployment`
++ Runtime: Python 3.14
 
-2. Click **Start Session**, and select the EC2 instance named **Test-Interface-Endpoint**. This EC2 instance is running in "VPC On-prem" and will be used to test connectivty to Amazon S3 through the Interface endpoint we just created. Session Manager will open a new browser tab with a shell prompt: **sh-4.2 $**
+![lambda](/images/5-Workshop/5.4-Endpoint/info-lambda.png)
 
-![Start session](/images/5-Workshop/5.4-S3-onprem/start-session.png)
++ Permission: use an existing role
++ Select the IAM role created in earlier steps
++ Click **Create function**
 
-3. Change to the ssm-user's home directory with command "cd ~"
+![lambda](/images/5-Workshop/5.4-Endpoint/lambda-created.png)
 
-4. Create a file named testfile2.xyz
+2. Create a trigger
+
++ Click **Add trigger**
+
+![lambda](/images/5-Workshop/5.4-Endpoint/add-trigger.png)
+
++ Source trigger: **S3**
++ Bucket: the bucket that will contain the model
++ Event type: **PUT**
++ Prefix: `output/`
++ Suffix: `.tar.gz`
+
+![lambda](/images/5-Workshop/5.4-Endpoint/info-trigger.png)
+
++ Click **Add**
+
+3. Lambda code
+
+Add the following code to the Lambda function (adjust environment variables and ARNs to your environment):
+
+```python
+import boto3
+import time
+import os
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+sm_client = boto3.client('sagemaker')
+
+# CONFIG (recommended to put in Lambda Environment Variables)
+# Container image URI for Scikit-Learn (change according to your region)
+# You can get this with: sagemaker.image_uris.retrieve("sklearn", region="us-east-1", version="0.23-1")
+CONTAINER_IMAGE_URI = "683313688378.dkr.ecr.us-east-1.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3"
+ROLE_ARN = "arn:aws:iam::064197589739:role/SageMakerExecutionRole"  # Replace with your role ARN
+
+def lambda_handler(event, context):
+    try:
+        # 1. Retrieve the uploaded file info from the S3 event
+        s3_record = event['Records'][0]['s3']
+        bucket = s3_record['bucket']['name']
+        key = s3_record['object']['key']
+
+        model_url = f"s3://{bucket}/{key}"
+
+        # Create unique names based on timestamp
+        timestamp = time.strftime('%Y-%m-%d-%H-%M-%S', time.gmtime())
+        model_name = f"sklearn-model-{timestamp}"
+        endpoint_config_name = f"sklearn-config-{timestamp}"
+        endpoint_name = f"sklearn-serverless-{timestamp}"
+
+        logger.info(f"Detected new model: {model_url}")
+
+        # 2. Create SageMaker Model
+        # Note: Your inference.py must be present in model.tar.gz or configured via environment variables
+        create_model_response = sm_client.create_model(
+            ModelName=model_name,
+            PrimaryContainer={
+                'Image': CONTAINER_IMAGE_URI,
+                'ModelDataUrl': model_url,
+                'Environment': {
+                    'SAGEMAKER_PROGRAM': 'inference.py',
+                    'SAGEMAKER_SUBMIT_DIRECTORY': model_url
+                }
+            },
+            ExecutionRoleArn=ROLE_ARN
+        )
+        logger.info(f"Created Model: {model_name}")
+
+        # 3. Create Endpoint Configuration (Serverless)
+        create_config_response = sm_client.create_endpoint_config(
+            EndpointConfigName=endpoint_config_name,
+            ProductionVariants=[
+                {
+                    'VariantName': 'AllTraffic',
+                    'ModelName': model_name,
+                    'ServerlessConfig': {
+                        'MemorySizeInMB': 2048,  # choose 1024, 2048, 3072...
+                        'MaxConcurrency': 5      # max concurrent requests
+                    }
+                }
+            ]
+        )
+        logger.info(f"Created Serverless Config: {endpoint_config_name}")
+
+        # 4. Create Endpoint
+        create_endpoint_response = sm_client.create_endpoint(
+            EndpointName=endpoint_name,
+            EndpointConfigName=endpoint_config_name
+        )
+
+        return {
+            'statusCode': 200,
+            'body': f"Deploying Endpoint: {endpoint_name}. This may take several minutes."
+        }
+
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        raise e
 ```
-fallocate -l 1G testfile2.xyz
+
++ Click **Deploy**
+
+When training and tuning produce a model artifact in S3, this Lambda will automatically deploy the model and create the corresponding endpoint.
+
+![endpoint](/images/5-Workshop/5.4-Endpoint/end-inservice.png)
+
+### Test endpoint
+
+Run the following command to invoke the endpoint:
+
+```bash
+aws sagemaker-runtime invoke-endpoint --endpoint-name endpoint-deploy-serverless --body '["testdata", "test"]' --content-type application/json output_file.json
 ```
 
-![user](/images/5-Workshop/5.4-S3-onprem/cli1.png)
+Example response:
 
-
-5. Copy file to the same S3 bucket we created in section 3.2
-
+```json
+{
+    "status": "success",
+    "prediction": {
+        "name": "Dummy Model",
+        "accuracy": 99.9
+    },
+    "input_received": ["testdata", "test"]
+}
 ```
-aws s3 cp --endpoint-url https://bucket.<Regional-DNS-Name> testfile2.xyz s3://<your-bucket-name>
-``` 
-+ This command requires the --endpoint-url parameter, because you need to use the endpoint-specific DNS name to access S3 using an Interface endpoint.
-+ Do not include the leading ' * ' when copying/pasting the regional DNS name.
-+ Provide your S3 bucket name created earlier
-
-![copy file](/images/5-Workshop/5.4-S3-onprem/cli2.png)
-
-
-Now the file has been added to your S3 bucket. Let check your S3 bucket in the next step.
-
-#### Check Object in S3 bucket
-
-1. Navigate to S3 console
-2. Click Buckets
-3. Click the name of your bucket and you will see testfile2.xyz has been added to your bucket
-
-![check bucket](/images/5-Workshop/5.4-S3-onprem/check-bucket.png)
-
 
 
 

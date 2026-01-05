@@ -1,6 +1,6 @@
 ---
 title: "Proposal"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
@@ -34,9 +34,7 @@ The solution delivers clear economic efficiency and frees up AI/ML engineers. Es
 ### 3. Solution Architecture
 The platform applies an Event-driven Serverless architecture to manage the Machine Learning model lifecycle. Training data (CSV/JSON) uploaded to S3 triggers an automated event chain involving training, evaluation, and deployment.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
-
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+![Architecture](/images/2-Proposal/architecture.png)
 
 ### AWS Services Used
 - Amazon S3: Stores Datasets, Model Artifacts (model.tar.gz), and Training Metrics.

@@ -30,10 +30,8 @@ Công ty tạo điều kiện về thời gian linh hoạt khi cần thiết. Ng
 ### Một số câu hỏi khác
 - Điều bạn **hài lòng nhất** trong thời gian thực tập?  
 Mọi người rất thân thiện, sẵn sàng hỗ trợ bất cứ lúc nào.
-- Điều bạn nghĩ công ty **cần cải thiện** cho các thực tập sinh sau?  
-- Nếu giới thiệu cho bạn bè, bạn có **khuyên họ thực tập ở đây không**? Vì sao?  
 
 
 ### Đề xuất & mong muốn
-- Bạn có đề xuất gì để cải thiện trải nghiệm trong kỳ thực tập?  
 - Bạn có muốn tiếp tục chương trình này trong tương lai?
+Có

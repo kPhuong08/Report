@@ -22,7 +22,7 @@ This step packages model and inference code so SageMaker can load them into a co
 1. In the SageMaker Console, open **Deployment & inference** in the navigation bar.
 2. Under **Deployable models**, click **Create model**.
 
-![model](/images/5-Workshop/5.4-Endpoint/model-create.png)
+![model](/images/5-Workshop/5.4-Endpoint/create-model.png)
 
 Configuration suggestions:
 - **Model name:** `model-serverless`

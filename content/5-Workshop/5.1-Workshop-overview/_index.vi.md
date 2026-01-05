@@ -17,4 +17,4 @@ Là nền tảng toàn diện của AWS giúp xây dựng, huấn luyện và tr
   + **SageMaker Pipelines (hoặc Step Functions):** Để điều phối luồng công việc.
 
 
-![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+![overview](/images/5-Workshop/5.1-Workshop-overview/arch.png)

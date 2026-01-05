@@ -1,59 +1,37 @@
 ---
 title: "Worklog Tuần 4"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 1
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 4:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Học thêm một vài dịch vụ AWS
+* Tìm hiểu và quyết định loại dịch vụ AI được sử dụng
+* Lên kế hoạch cho project
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | -  Thống kê các chức năng, giá cả,... của các dịch vụ AI đã tìm hiểu <br> - Quyết định loại dịch vụ sử dụng và cách sử dụng cũng như triển khai                                                                            | 22/09/2025   | 22/09/2025      |
+| 3   | -     Tìm hiểu cơ bản về Serverless và Microservice                                      | 23/09/2025   | 23/08/2025      | |
+| 4   | - Tìm hiểu vể Lambda: <br>&emsp; + Cách sử dụng <br>&emsp; + Luồng hoạt động           | 24/09/2025   | 24/09/2025      | <https://000022.awsstudygroup.com/> |
+| 5   | - Thực hành sử dụng Lamda: <br>&emsp; + Tạo function <br>&emsp; + Tạo trigger          | 25/09/2025   | 25/09/2025      | <https://000022.awsstudygroup.com/> |
+| 6   | - Viết kế hoạch cho project <br>&emsp; + Các dịch vụ cần tìm hiểu <br>&emsp; + Các thành phần cần làm                                                                                             | 26/08/2025   | 26/09/2025      |  |
 
 
 ### Kết quả đạt được tuần 4:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Hiểu thêm về các dịch vụ AI
+* Quyết định loại dịch vụ sử dụng cho project
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Hiểu sơ lược về Serverless và Microservice
+* Biết thêm về Lambda và biết cách tạo lambda function
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* Lên kế hoạch cho project:
+  * Các dịch vụ cần tìm hiểu
+  * Các thành phần
 
 

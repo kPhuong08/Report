@@ -30,12 +30,10 @@ The company offers flexible working hours and learning opportunities through wor
 
 ### Additional questions
 - What did you find **most satisfying** during the internship?
-- What should the company **improve** for future interns?
-- If you were to recommend this internship to a friend, would you suggest it? Why or why not?
+Everyone is very friendly, always ready to support 
 
 ---
 
 ### Suggestions & requests
-- Any suggestions to improve the internship experience?
 - Would you like to continue in this program in the future?
-- Any other comments?
+Yes
