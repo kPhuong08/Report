@@ -1,6 +1,6 @@
 ---
 title: "Sharing & Feedback"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "

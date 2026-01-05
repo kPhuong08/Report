@@ -1,6 +1,6 @@
 ---
 title: "Configure S3 Event Trigger"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 2
 chapter: false
 pre: " <b> 5.3.2 </b> "

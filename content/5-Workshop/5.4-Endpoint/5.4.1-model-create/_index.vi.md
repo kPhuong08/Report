@@ -1,6 +1,6 @@
 ---
 title : "Chuẩn bị tài nguyên"
-date : "`r Sys.Date()`"
+date: 2026-01-05
 weight : 1
 chapter : false
 pre : " <b> 5.4.1 </b> "
@@ -26,7 +26,7 @@ Bước này giống như việc đóng gói hành lý. SageMaker cần biết c
 1. Ở Sagemaker AI console bên thanh điều hướng chọn **Deployment & inference** 
 2. Ở mục **Deployable model** click **Create model**
 
-![model](/images/5-Workshop/5.4-Endpoint/model-create.png)
+![model](/images/5-Workshop/5.4-Endpoint/create-model.png)
 
 + Model name: model-serverless
 + IAM role: role đã chuẩn bị ở phần trước

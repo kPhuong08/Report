@@ -1,6 +1,6 @@
 ---
 title: "Di chuyển máy chủ theo dõi MLflow sang Amazon SageMaker AI với Serverless MLflow"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
@@ -26,6 +26,7 @@ Bạn có thể chọn thực hiện quy trình di chuyển từ một phiên b�
 Hình 1: Quy trình di chuyển với công cụ MLflow Export Import
 
 **Điều kiện tiên quyết**
+
 Để thực hiện theo bài viết này, hãy đảm bảo bạn có các điều kiện tiên quyết sau:
 
 + Một tài khoản AWS — nếu bạn chưa có, hãy [đăng ký làm khách hàng mới](https://aws.amazon.com/vi/free/).

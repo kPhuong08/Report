@@ -1,6 +1,6 @@
 ---
 title : "Các bước chuẩn bị"
-date :  "`r Sys.Date()`" 
+date: 2026-01-05
 weight : 2
 chapter : false
 pre : " <b> 5.2. </b> "
@@ -106,9 +106,9 @@ def model_fn(model_dir):
 
 def predict_fn(input_data, model):
     """
-    (Tuỳ chọn nhưng nên có) Hàm này nhận data từ user và đưa vào model
+    Hàm này nhận data từ user và đưa vào model
     """
-    # Vì model của bạn là dummy (chỉ là cái Dict), mình trả về nguyên văn
+    # Vì model là dummy (chỉ là cái Dict), trả về nguyên văn
     return {"status": "success", "prediction": model, "input_received": input_data}
 
 # ---------------------------------------------------------
@@ -127,7 +127,7 @@ if __name__ == '__main__':
     print("Starting training...")
     time.sleep(5) # Giả lập training
     
-    # Thay vì write text, hãy dùng joblib.dump để lưu object thật
+    # Dùng joblib.dump để lưu object thật
     # Để tí nữa hàm model_fn ở trên có thể load lại được bằng joblib.load
     dummy_model = {"name": "Dummy Model", "accuracy": 99.9}
     

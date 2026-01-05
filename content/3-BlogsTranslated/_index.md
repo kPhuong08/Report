@@ -1,12 +1,12 @@
 ---
 title: "Translated Blogs"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 3
 chapter: false
 pre: " <b> 3. </b> "
 ---
 
 ###  [Blog 1 - Migrate MLflow tracking servers to Amazon SageMaker AI with serverless MLflow](3.1-Blog1/)
-This blog introduces how to start building a data lake in the healthcare sector by applying a microservices architecture. You will learn why data lakes are important for storing and analyzing diverse healthcare data (electronic medical records, lab test data, medical IoT devices…), how microservices help make the system more flexible, scalable, and easier to maintain. The article also guides you through the steps to set up the environment, organize the data processing pipeline, and ensure compliance with security & privacy standards such as HIPAA.
+This blog post provides a technical guide to migrating a self-managed MLflow monitoring server (on EC2 or on-premises) to Amazon SageMaker using Serverless MLflow. It simplifies complex operations, optimizes costs, and integrates with the SageMaker AI/ML ecosystem. It utilizes the MLflow Import function and the SageMaker MLflow Plugin.
 
 

@@ -1,6 +1,6 @@
 ---
 title : "Prerequiste"
-date :  "`r Sys.Date()`" 
+date: 2026-01-05
 weight : 2 
 chapter : false
 pre : " <b> 5.2. </b> "

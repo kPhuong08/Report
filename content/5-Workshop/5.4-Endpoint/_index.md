@@ -1,6 +1,6 @@
 ---
 title: "Deploy Serverless Endpoint"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 4
 chapter: false
 pre: " <b> 5.4. </b> "
@@ -10,7 +10,7 @@ pre: " <b> 5.4. </b> "
 
 In this section, we will package the model artifact produced by training and deploy it to a SageMaker Serverless Inference endpoint. Unlike a real-time endpoint (which runs continuously), a Serverless Endpoint can scale to zero when idle, helping optimize cost for infrequently used workloads.
 
-![endpoint architecture](/images/5-Workshop/5.4-Endpoint/diagram.png)
+![endpoint architecture](/images/5-Workshop/5.4-Endpoint/diagram3.png)
 
 #### Contents
 

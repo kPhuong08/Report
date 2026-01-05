@@ -1,6 +1,6 @@
 ---
-title : "Kiểm tra Gateway Endpoint"
-date :  "`r Sys.Date()`" 
+title : "Tạo S3 event trigger"
+date: 2026-01-05
 weight : 2
 chapter : false
 pre : " <b> 5.3.2 </b> "
@@ -11,9 +11,9 @@ pre : " <b> 5.3.2 </b> "
 1. Tại Lambda function 
 2. Chọn **Add trigger**　với source là **S3** 
 
-![add trigger](/images/5-Workshop/5.3-S3-vpc/add-trigger.png)
+![add trigger](/images/5-Workshop/5.3-Training-flow/add-trigger.png)
 
-![trigger source](/images/5-Workshop/5.3-S3-vpc/trigger-source.png)
+![trigger source](/images/5-Workshop/5.3-Training-flow/trigger-source.png)
 
 3. Trong Trigger configuration 
 + Chọn bucket: là bucket đã tạo 
@@ -21,11 +21,11 @@ pre : " <b> 5.3.2 </b> "
 + Prefix: `data/train/` (Chỉ kích hoạt khi upload vào folder này)
 + Suffix: .csv (Chỉ kích hoạt với file csv)
 
-![trigger config](/images/5-Workshop/5.3-S3-vpc/trigger-config.png)
+![trigger config](/images/5-Workshop/5.3-Training-flow/trigger-config.png)
 
 Sau đó tick vào "I acknowledge..." và nhấn **Add**
 
-![trigger added](/images/5-Workshop/5.3-S3-vpc/trigger-added.png)
+![trigger added](/images/5-Workshop/5.3-Training-flow/trigger-added.png)
 
 ### Kiểm thử luồng 
 
@@ -36,17 +36,17 @@ Di chuyển đến S3, chọn bucket vừa tạo, vào folder `/data/train/`
 
 Click **Upload** 
 
-![s3](/images/5-Workshop/5.3-S3-vpc/choose-upload.png)
+![s3](/images/5-Workshop/5.3-Training-flow/choose-upload.png)
 
 Nhấn **Add files** chọn file data .csv đã chuẩn bị sau đó **Upload** lên S3
 
-![s3](/images/5-Workshop/5.3-S3-vpc/add-files.png)
+![s3](/images/5-Workshop/5.3-Training-flow/add-files.png)
 
 Sau khi upload thành công 
 
-![s3](/images/5-Workshop/5.3-S3-vpc/uploaded.png)
+![s3](/images/5-Workshop/5.3-Training-flow/uploaded.png)
 
 3. Di chuyển đến Sagemaker AI vào mục **Model training & customization** chọn **Training & tuning jobs** sẽ thấy một Job mới đang ở trạng thái InProgress. Điều này chứng tỏ Event-Driven workflow đã hoạt động thành công.
 
-![sagemaker](/images/5-Workshop/5.3-S3-vpc/job-created.png)
+![sagemaker](/images/5-Workshop/5.3-Training-flow/job-created.png)
 

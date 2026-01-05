@@ -1,6 +1,6 @@
 ---
 title: "Migrate MLflow tracking servers to Amazon SageMaker AI with Serverless MLflow"
-date: "`r Sys.Date()`"
+date: 2026-01-05
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
@@ -21,7 +21,7 @@ While this post focuses on migrating from self-managed MLflow tracking servers t
 The following guide provides step-by-step instructions for migrating an existing MLflow tracking server to SageMaker with MLflow. The migration process consists of three main phases: exporting your MLflow artifacts to intermediate storage, configuring an MLflow App, and importing your artifacts. You can choose to execute the migration process from an EC2 instance, your personal computer, or a SageMaker notebook. Whichever environment you select must maintain connectivity to both your source tracking server and your target tracking server. MLflow Export Import supports exports from both self-managed tracking servers and Amazon SageMaker MLflow tracking servers (from MLflow v2.16 onwards) to Amazon SageMaker Serverless MLflow.
 
 ![alt text](image.png)
- 1: Migration process with MLflow Export Import tool
+Figure 1: Migration process with MLflow Export Import tool
 
 ---
 
