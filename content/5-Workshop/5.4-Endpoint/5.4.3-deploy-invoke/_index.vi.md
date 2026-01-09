@@ -138,6 +138,7 @@ Sau khi Training & tunning tạo ra output là một model trong S3 thì sẽ t�
 ```
 
 2. Test endpoint
+
 *Thay endpoint-name bằng endpoint của bạn*
 
 ``` 

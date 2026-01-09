@@ -137,10 +137,11 @@ When training and tuning produce a model artifact in S3, this Lambda will automa
 ### Test endpoint
 1. Create input.json with any test data
 ```
-d:\Document\test\input.json
+["testdata", "test"]    
 ```
 
 2. Run the following command to invoke the endpoint:
+
 *Replace the endpoint-name*
 
 ```bash
