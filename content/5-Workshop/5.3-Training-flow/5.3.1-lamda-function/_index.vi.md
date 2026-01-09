@@ -29,7 +29,7 @@ Nhấn **Create function** và Lambda sẽ được tạo
 
 Vào IAM console mục **Role** chọn role vừa tạo.
 
-Ở phần **Trust relationship** nhấn **Edit trust policy** sau đó thêm statement cho phép Lambda vào.
+Ở phần **Trust relationship** nhấn **Edit trust policy** sau đó thêm statement cho phép Lambda và S3 vào.
 
 ![lambda](/images/5-Workshop/5.3-Training-flow/update-policy.png)
 

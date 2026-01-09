@@ -68,7 +68,7 @@ def lambda_handler(event, context):
     try:
         # 1. Retrieve the uploaded file info from the S3 event
         s3_record = event['Records'][0]['s3']
-        bucket = s3_record['bucket']['name']
+        bucket = s3_record['bucket']['name'].strip()
         key = s3_record['object']['key']
 
         model_url = f"s3://{bucket}/{key}"
@@ -76,8 +76,8 @@ def lambda_handler(event, context):
         # Create unique names based on timestamp
         timestamp = time.strftime('%Y-%m-%d-%H-%M-%S', time.gmtime())
         model_name = f"sklearn-model-{timestamp}"
-        endpoint_config_name = f"sklearn-config-{timestamp}"
-        endpoint_name = f"sklearn-serverless-{timestamp}"
+        endpoint_config_name = f"endpoint-config-{timestamp}"
+        endpoint_name = f"endpoint-serverless-{timestamp}"
 
         logger.info(f"Detected new model: {model_url}")
 

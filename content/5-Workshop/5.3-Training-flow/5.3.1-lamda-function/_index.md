@@ -24,7 +24,39 @@ After clicking **Create function**, the Lambda function will be created.
 
 Before using the function, update the role's policy to allow Lambda to assume the role.
 
-Go to IAM Console → **Roles** → select the role you created, then edit the **Trust relationship** and add the statement allowing Lambda to assume the role.
+Go to IAM Console → **Roles** → select the role you created, then edit the **Trust relationship** and add the statement allowing Lambda and S3to assume the role.
+
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "",
+			"Effect": "Allow",
+			"Principal": {
+				"Service": "sagemaker.amazonaws.com"
+			},
+			"Action": "sts:AssumeRole"
+		},
+		{
+			"Sid": "",
+			"Effect": "Allow",
+			"Principal": {
+				"Service": "lambda.amazonaws.com"
+			},
+			"Action": "sts:AssumeRole"
+		},
+		{
+			"Sid": "",
+			"Effect": "Allow",
+			"Principal": {
+				"Service": "s3.amazonaws.com"
+			},
+			"Action": "sts:AssumeRole"
+		}
+	]
+}
+```
 
 ![lambda](/images/5-Workshop/5.3-Training-flow/update-policy.png)
 

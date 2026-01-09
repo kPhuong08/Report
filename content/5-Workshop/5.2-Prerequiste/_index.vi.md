@@ -84,58 +84,94 @@ Tạo file train.py ở máy local với nội dung giả lập quá trình trai
 import argparse
 import os
 import time
-import joblib  # <--- Nhớ import thư viện này
+import joblib
+import shutil
+import json 
 
 # ---------------------------------------------------------
-# PHẦN 1: CÁC HÀM BẮT BUỘC CHO SAGE MAKER ENDPOINT (INFERENCE)
+# PHẦN 1: CÁC HÀM INFERENCE 
 # ---------------------------------------------------------
 
 def model_fn(model_dir):
-    """
-    Hàm này được SageMaker gọi TỰ ĐỘNG khi khởi động Endpoint.
-    Nhiệm vụ: Load model từ ổ cứng lên RAM.
-    """
+    """Load model từ ổ cứng"""
     print(f"Đang load model từ: {model_dir}")
     model_path = os.path.join(model_dir, 'model.joblib')
     
     if os.path.exists(model_path):
-        # Load model ra. Ở dưới mình lưu là Dictionary nên load ra cũng là Dictionary
         return joblib.load(model_path)
     else:
         raise FileNotFoundError(f"Không tìm thấy file model tại: {model_path}")
 
+def input_fn(request_body, request_content_type):
+    """
+    Hàm này nhận Raw Bytes từ request và chuyển thành object Python
+    """
+    if request_content_type == 'application/json':
+        # Chuyển chuỗi JSON (bytes) thành Python List/Dict
+        return json.loads(request_body)
+    else:
+        # Nếu gửi content-type khác, báo lỗi
+        raise ValueError(f"Content type {request_content_type} chưa được hỗ trợ.")
+
 def predict_fn(input_data, model):
     """
-    Hàm này nhận data từ user và đưa vào model
+    Logic dự đoán
     """
-    # Vì model là dummy (chỉ là cái Dict), trả về nguyên văn
-    return {"status": "success", "prediction": model, "input_received": input_data}
+    # Vì đây là dummy model (Dict), ta giả lập việc dự đoán
+    # input_data lúc này đã là List/Dict nhờ hàm input_fn ở trên
+    
+    result = {
+        "status": "success",
+        "prediction_from_model": model, # Model dummy của bạn
+        "input_you_sent": input_data
+    }
+    return result
+
+def output_fn(prediction, content_type):
+    """
+    Hàm này nhận kết quả từ predict_fn và chuyển thành JSON để trả về Client.
+    QUAN TRỌNG: Khắc phục lỗi 500 tại đây.
+    """
+    # Mặc định SageMaker mong đợi accept header là application/json
+    if content_type == 'application/json':
+        return json.dumps(prediction)
+    
+    raise ValueError(f"Accept type {content_type} chưa được hỗ trợ.")
 
 # ---------------------------------------------------------
-# PHẦN 2: CODE TRAINING 
+# PHẦN 2: CODE TRAINING
 # ---------------------------------------------------------
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     
-    # SageMaker tự động mount data vào các đường dẫn này
     parser.add_argument('--train', type=str, default=os.environ.get('SM_CHANNEL_TRAIN'))
     parser.add_argument('--model-dir', type=str, default=os.environ.get('SM_MODEL_DIR'))
     
     args, _ = parser.parse_known_args()
     
     print("Starting training...")
-    time.sleep(5) # Giả lập training
+    # time.sleep(5) 
     
-    # Dùng joblib.dump để lưu object thật
-    # Để tí nữa hàm model_fn ở trên có thể load lại được bằng joblib.load
     dummy_model = {"name": "Dummy Model", "accuracy": 99.9}
     
     save_path = os.path.join(args.model_dir, 'model.joblib')
     joblib.dump(dummy_model, save_path)
-    # ------------------------
         
     print(f"Training complete. Model saved to {save_path}")
+
+    # Lấy đường dẫn file code đang chạy hiện tại
+    current_script_path = __file__
+    
+    # Định nghĩa đường dẫn đích trong folder output
+    code_output_path = os.path.join(args.model_dir, 'train.py')
+    
+    print(f"Copying code from {current_script_path} to {code_output_path}")
+    shutil.copy2(current_script_path, code_output_path)
+    
+    # =========================================================
+
+    print("Training and packaging complete.")
 ```
 
 Nén file này lại thành .tar.gz

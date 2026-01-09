@@ -65,7 +65,7 @@ def lambda_handler(event, context):
     try:
         # 1. Lấy thông tin file vừa upload từ S3 Event
         s3_record = event['Records'][0]['s3']
-        bucket = s3_record['bucket']['name']
+        bucket = s3_record['bucket']['name'].strip()
         key = s3_record['object']['key']
         
         model_url = f"s3://{bucket}/{key}"
@@ -73,8 +73,8 @@ def lambda_handler(event, context):
         # Tạo tên unique cho model và endpoint dựa trên thời gian
         timestamp = time.strftime('%Y-%m-%d-%H-%M-%S', time.gmtime())
         model_name = f"sklearn-model-{timestamp}"
-        endpoint_config_name = f"sklearn-config-{timestamp}"
-        endpoint_name = f"sklearn-serverless-{timestamp}"
+        endpoint_config_name = f"endpoint-config-{timestamp}"
+        endpoint_name = f"endpoint-serverless-{timestamp}"
 
         logger.info(f"Phát hiện model mới: {model_url}")
 
@@ -86,7 +86,7 @@ def lambda_handler(event, context):
                 'Image': CONTAINER_IMAGE_URI,
                 'ModelDataUrl': model_url,
                 'Environment': {
-                    'SAGEMAKER_PROGRAM': 'inference.py', # Tên file script chính của bạn
+                    'SAGEMAKER_PROGRAM': 'train.py', # Tên file script chính của bạn
                     'SAGEMAKER_SUBMIT_DIRECTORY': model_url # Nơi chứa code (thường chung với model artifact)
                 }
             },
