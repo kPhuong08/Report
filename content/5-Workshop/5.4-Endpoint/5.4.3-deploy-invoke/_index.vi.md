@@ -44,7 +44,7 @@ pre : " <b> 5.4.3 </b> "
 
 Thêm đoạn code sau vào code của Lambda
 
-```
+```python 
 import boto3
 import time
 import os
@@ -131,12 +131,20 @@ Sau khi Training & tunning tạo ra output là một model trong S3 thì sẽ t�
 ![endpoint](/images/5-Workshop/5.4-Endpoint/end-inservice.png)
 
 ### Test endpoint
+1. Tạo 1 file input.json với data test bất kỳ
 
-``` 
-aws sagemaker-runtime invoke-endpoint --endpoint-name endpoint-deploy-serverless --body '["testdata", "test"]' --content-type application/json output_file.json 
+```
+["testdata", "test"] 
 ```
 
-Kết quả trả về
+2. Test endpoint
+*Thay endpoint-name bằng endpoint của bạn*
+
+``` 
+aws sagemaker-runtime invoke-endpoint --endpoint-name endpoint-serverless-2026-01-09-06-04-49 --body fileb://input.json --content-type application/json output_file.json
+```
+
+Kết quả trả về sẽ nằm trong file output_file.json có dạng tương tự:
 ```
 {
     "status": "success",

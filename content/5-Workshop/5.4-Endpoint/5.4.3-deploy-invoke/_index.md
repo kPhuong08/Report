@@ -82,14 +82,13 @@ def lambda_handler(event, context):
         logger.info(f"Detected new model: {model_url}")
 
         # 2. Create SageMaker Model
-        # Note: Your inference.py must be present in model.tar.gz or configured via environment variables
         create_model_response = sm_client.create_model(
             ModelName=model_name,
             PrimaryContainer={
                 'Image': CONTAINER_IMAGE_URI,
                 'ModelDataUrl': model_url,
                 'Environment': {
-                    'SAGEMAKER_PROGRAM': 'inference.py',
+                    'SAGEMAKER_PROGRAM': 'train.py',
                     'SAGEMAKER_SUBMIT_DIRECTORY': model_url
                 }
             },
@@ -136,14 +135,19 @@ When training and tuning produce a model artifact in S3, this Lambda will automa
 ![endpoint](/images/5-Workshop/5.4-Endpoint/end-inservice.png)
 
 ### Test endpoint
-
-Run the following command to invoke the endpoint:
-
-```bash
-aws sagemaker-runtime invoke-endpoint --endpoint-name endpoint-deploy-serverless --body '["testdata", "test"]' --content-type application/json output_file.json
+1. Create input.json with any test data
+```
+d:\Document\test\input.json
 ```
 
-Example response:
+2. Run the following command to invoke the endpoint:
+*Replace the endpoint-name*
+
+```bash
+aws sagemaker-runtime invoke-endpoint --endpoint-name endpoint-serverless-2026-01-09-06-04-49 --body fileb://input.json --content-type application/json output_file.json
+```
+
+3. Response will be save in output_file.json:
 
 ```json
 {
