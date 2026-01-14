@@ -86,7 +86,4 @@ Tham gia workshop **“Secure Your Applications: AWS Perimeter Protection Worksh
 - **CloudFront**: một dịch vụ CDN có thể giúp ích trong viêc tối ưu triển khai ứng dụng Web trên Internet 
 - **WAF**: dịch vụ bảo mật giúp người dùng có thể ngăn chặn các lỗ hổng bảo mật cũng như các cuộc tấn công mạng cho ứng dụng
 
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-
 > Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi biết thêm về những dịch vụ hỗ trợ trong việc triển khai ứng Web một cách hiệu quả, tối ưu chi phí và bảo mật hơn.

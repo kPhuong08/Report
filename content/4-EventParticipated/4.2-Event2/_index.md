@@ -84,7 +84,4 @@ Participating in the **“Secure Your Applications: AWS Perimeter Protection Wor
 - **CloudFront**: A CDN service that assists in optimizing Web application deployment on the Internet.
 - **WAF**: A security service that helps users prevent security vulnerabilities as well as cyber attacks on applications.
 
-#### Some Images from the Event
-* Add images of you/the event here
-
 > Overall, the event not only provided technical knowledge but also helped me learn about services that support efficient, cost-optimized, and more secure Web application deployment.
