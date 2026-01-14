@@ -103,6 +103,4 @@ Participating in **“Cloud Day VietNam 2025”** was a very rewarding experienc
 - Migration and modernization strategies need to be evaluated and planned in detail; one should not rush to transform the entire system.
 - AI tools like Amazon Q Developer can support the acceleration of software development.
 
-#### Some Images from the Event
-* Add images of you/the event here
 > Overall, the event not only provided technical knowledge but also helped me learn more about AI trends and transformation & modernization in the enterprise.

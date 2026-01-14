@@ -8,6 +8,8 @@ pre: " <b> 3.1. </b> "
 
 # Migrate MLflow tracking servers to Amazon SageMaker AI with serverless MLflow
 
+*Link blog* : [link](https://aws.amazon.com/vi/blogs/machine-learning/migrate-mlflow-tracking-servers-to-amazon-sagemaker-ai-with-serverless-mlflow/)
+
 Operating a self-managed MLflow tracking server comes with administrative overhead, including server maintenance and resource scaling. As teams scale their ML experimentation, efficiently managing resources during peak usage and idle periods is a challenge. Organizations running MLflow on Amazon EC2 or on-premises can optimize costs and engineering resources by using Amazon SageMaker AI with serverless MLflow.
 
 This post shows you how to migrate your self-managed MLflow tracking server to a MLflow App – a serverless tracking server on SageMaker AI that automatically scales resources based on demand while removing server patching and storage management tasks at no cost. Learn how to use the MLflow Export Import tool to transfer your experiments, runs, models, and other MLflow resources, including instructions to validate your migration’s success.
@@ -20,7 +22,7 @@ While this post focuses on migrating from self-managed MLflow tracking servers t
 
 The following guide provides step-by-step instructions for migrating an existing MLflow tracking server to SageMaker with MLflow. The migration process consists of three main phases: exporting your MLflow artifacts to intermediate storage, configuring an MLflow App, and importing your artifacts. You can choose to execute the migration process from an EC2 instance, your personal computer, or a SageMaker notebook. Whichever environment you select must maintain connectivity to both your source tracking server and your target tracking server. MLflow Export Import supports exports from both self-managed tracking servers and Amazon SageMaker MLflow tracking servers (from MLflow v2.16 onwards) to Amazon SageMaker Serverless MLflow.
 
-![alt text](image.png)
+![image](/images/3-Blog/image.png)
 Figure 1: Migration process with MLflow Export Import tool
 
 ---
@@ -62,7 +64,7 @@ o prepare your target environment, you first need to create a new SageMaker Serv
 1. After you’ve setup SageMaker AI (see also Guide to getting set up with Amazon SageMaker AI), you can access Amazon SageMaker Studio and in the MLflow section, create a new MLflow App (if it wasn’t automatically created during the initial domain setup). Follow the instructions outlined in the SageMaker documentation.
 2. Once your managed MLflow App has been created, it should appear in your SageMaker Studio console. Keep in mind that the creation process can take up to 5 minutes.
 
-![alt text](image-1.png)
+![image](/images/3-Blog/image-1.png)
 Figure 2: MLflow App in SageMaker Studio Console
 
 Alternatively, you can view it by executing the following AWS Command Line Interface (CLI) command:
@@ -72,7 +74,7 @@ aws sagemaker list-mlflow-tracking-servers
 3. Copy the Amazon Resource Name (ARN) of your tracking server to a document, it’s needed in Step 4
 4. Choose Open MLflow, which leads you to an empty MLflow dashboard. In the next steps, we import our experiments and related artifacts from our self-managed MLflow tracking server here.
 
-![alt text](image-2.png)
+![image](/images/3-Blog/image-2.png)
 Figure 3: MLflow user interface, landing page
 
 ---
@@ -106,7 +108,7 @@ Now that your environment is configured, we can begin the actual migration proce
 1. After you’ve installed the MLflow Export Import tool, you can create a target directory in your execution environment as a destination target for the resources, which you extract in the next step.
 2. Inspect your existing experiments and the associated MLflow resources you want to export. In the following example, we want to export the currently stored objects (for example, experiments and registered models).
 
-![alt text](image-3.png)
+![image](/images/3-Blog/image-3.png)
 Figure 4: Experiments stored in MLflow
 
 3. Start the migration by configuring the Uniform Resource Identifier (URI) of your tracking server as an environmental variable and executing the following bulk export tool with the parameters of your existing MLflow tracking server and a target directory (see also the documentation):
@@ -144,7 +146,7 @@ To confirm your migration was successful, verify that your MLflow resources were
 - Model artifacts are accessible and downloadable
 - Tags and notes are preserved
 
-![alt text](image-4.png)
+![image](/images/3-Blog/image-4.png)
 Figure 5: MLflow user interface, landing page after migration
 
 2. You can verify programmatic access by starting a new SageMaker notebook and running the following code:

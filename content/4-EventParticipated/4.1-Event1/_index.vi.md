@@ -104,6 +104,4 @@ Tham gia event **“Cloud Day VietNam 2025”** là một trải nghiệm rất 
 - Chiến lược di chuyển và hiện đại hóa cần đánh giá và lên kế hoạch một cách chi tiết, không nên vội vàng chuyển đổi toàn bộ hệ thống.
 - Các công cụ AI như Amazon Q Developer có thể hỗ trợ trong việc tăng tốc phát triển phần mềm 
 
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
 > Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi biết thêm về xu hướn AI và chuyển đổi & hiện đại hóa trong doanh nghiệp

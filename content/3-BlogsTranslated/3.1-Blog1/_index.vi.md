@@ -8,6 +8,8 @@ pre: " <b> 3.1. </b> "
 
 # Di chuyển MLflow tracking servers sang Amazon SageMaker với Serverless MLflow
 
+*Link bài viết gốc* : [link](https://aws.amazon.com/vi/blogs/machine-learning/migrate-mlflow-tracking-servers-to-amazon-sagemaker-ai-with-serverless-mlflow/)
+
 Việc vận hành một máy chủ theo dõi (tracking server) MLflow tự quản lý đi kèm với các chi phí quản trị, bao gồm bảo trì máy chủ và mở rộng tài nguyên. Khi các nhóm mở rộng quy mô thử nghiệm ML của họ, việc quản lý tài nguyên hiệu quả trong thời gian cao điểm và thời gian nhàn rỗi là một thách thức. Các tổ chức đang chạy MLflow trên Amazon EC2 hoặc tại chỗ (on-premises) có thể tối ưu hóa chi phí và tài nguyên kỹ thuật bằng cách sử dụng **Amazon SageMaker AI** với **serverless MLflow.**
 
 Bài viết này hướng dẫn bạn cách di chuyển máy chủ theo dõi MLflow tự quản lý của mình sang **MLflow App** – một máy chủ theo dõi không máy chủ (serverless) trên SageMaker AI, có khả năng tự động mở rộng tài nguyên dựa trên nhu cầu đồng thời loại bỏ các tác vụ vá lỗi máy chủ và quản lý lưu trữ mà không tốn thêm chi phí. Tìm hiểu cách sử dụng công cụ **MLflow Export Import** để chuyển các thí nghiệm (experiments), lần chạy (runs), mô hình và các tài nguyên MLflow khác, bao gồm cả hướng dẫn để xác nhận sự thành công của quá trình di chuyển.
@@ -22,7 +24,7 @@ Hướng dẫn sau đây cung cấp các bước chi tiết để di chuyển m�
 
 Bạn có thể chọn thực hiện quy trình di chuyển từ một phiên bản EC2, máy tính cá nhân hoặc sổ tay (notebook) SageMaker. Bất kể bạn chọn môi trường nào, nó phải duy trì kết nối đến cả máy chủ theo dõi nguồn và máy chủ theo dõi đích. MLflow Export Import hỗ trợ xuất từ cả máy chủ theo dõi tự quản lý và máy chủ theo dõi Amazon SageMaker MLflow (từ MLflow v2.16 trở đi) sang Amazon SageMaker Serverless MLflow.
 
-![alt text](image.png)
+![image](/images/3-Blog/image.png)
 Hình 1: Quy trình di chuyển với công cụ MLflow Export Import
 
 **Điều kiện tiên quyết**
@@ -62,7 +64,7 @@ pip install --upgrade mlflow=={supported_version}
 
 2. Sau khi MLflow App được quản lý của bạn đã được tạo, nó sẽ xuất hiện trong bảng điều khiển SageMaker Studio. Hãy nhớ rằng quá trình tạo có thể mất tới 5 phút.
 
-![alt text](image-1.png)
+![image](/images/3-Blog/image-1.png)
 Hình 2: MLflow App trong Bảng điều khiển SageMaker Studio
 
 Ngoài ra, bạn có thể xem nó bằng cách thực thi lệnh [Giao diện dòng lệnh AWS (CLI)](https://aws.amazon.com/vi/cli/) sau:
@@ -75,7 +77,7 @@ aws sagemaker list-mlflow-tracking-servers
 
 4. Chọn **Open MLflow**, thao tác này sẽ dẫn bạn đến một bảng điều khiển MLflow trống. Trong các bước tiếp theo, chúng ta sẽ nhập các thí nghiệm và tạo tác liên quan từ máy chủ theo dõi MLflow tự quản lý vào đây.
 
-![alt text](image-2.png)
+![image](/images/3-Blog/image-2.png)
 Hình 3: Giao diện người dùng MLflow, trang đích
 
 ### Bước 3: Cài đặt MLflow và plugin SageMaker MLflow
@@ -108,7 +110,7 @@ Bây giờ môi trường của bạn đã được cấu hình, chúng ta có t
 1. Sau khi đã cài đặt công cụ MLflow Export Import, bạn có thể tạo một thư mục đích trong môi trường thực thi để làm nơi chứa các tài nguyên mà bạn sẽ trích xuất ở bước tiếp . 
 2. Kiểm tra các thí nghiệm hiện có và các tài nguyên MLflow liên quan mà bạn muốn xuất. Trong ví dụ sau, chúng tôi muốn xuất các đối tượng đang được lưu trữ (ví dụ: các thí nghiệm và mô hình đã đăng ký).
 
-![alt text](image-3.png)
+![image](/images/3-Blog/image-3.png)
 Hình 4: Các thí nghiệm được lưu trữ trong MLflow
 
 3. Bắt đầu di chuyển bằng cách cấu hình Uniform Resource Identifier (URI) của máy chủ theo dõi dưới dạng biến môi trường và thực thi công cụ xuất hàng loạt sau đây với các tham số của máy chủ theo dõi MLflow hiện có và một thư mục đích (xem [tài liệu](https://github.com/mlflow/mlflow-export-import/blob/master/README_bulk.md#Export-all-MLflow-objects)):
@@ -148,7 +150,7 @@ import-all --input-dir mlflow-export
 + Các tạo tác mô hình (model artifacts) có thể truy cập và tải xuống được.
 + Thẻ (tags) và ghi chú được bảo tồn.
 
-![alt text](image-4.png)
+![image](/images/3-Blog/image-4.png)
 Hình 5: Giao diện người dùng MLflow, trang đích sau khi di chuyển
 
 2. Bạn có thể xác minh quyền truy cập bằng lập trình bằng cách bắt đầu một SageMaker notebook mới và chạy mã sau:
